@@ -1,0 +1,40 @@
+TASK
+TASK SET (single set of tasks)
+ROUTINE (set of task sets, can be run in parallel or sequentially)
+
+
+
+- tasks and components are opened in the MDI.
+- each have properties that can be set and functions that can run
+-- tasks have task params, and validate/reset/run funcs
+-- components have component params, component specific funcs
+- can open multiple tasks and components (but not two copies of the same?)
+
+
+- routine editor and ? are opened as single windows
+- can only open one routine editor
+
+
+
+TODO
+- expose default location(s) for tasks, routines, etc, each can have more than one (add location)
+-- could be on the network for instance
+
+- move ui files to res folder, or make them from code only
+
+
+
+
+
+GUIDE
+
+For instance, to embed a function in a new task so that it is exposed to the desktop application,
+make a new task that exposes the function's parameters and calls the function from the task's `run`
+method.
+
+{'a': ...},
+{'b': ...},
+
+def run(self):
+    self.validate()
+    some_func(a, b)

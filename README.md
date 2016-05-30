@@ -8,4 +8,3 @@ Autonimo is a desktop application for automating processes that are built using 
 ### Known issues
 
 ...
-

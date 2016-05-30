@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>img/arrow-curve-000-double-red.png</file>
+        <file>img/arrow-curve-000-left.png</file>
+        <file>qss/autonimo.qss</file>
+    </qresource>
+</RCC>
