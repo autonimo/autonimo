@@ -31,7 +31,7 @@ class Autonimo(QtGui.QApplication):
 
 
         # views
-        self.main_view = AutonimoMainWindow(self.model)
+        self.main_view = AutonimoMainWindow(self.model, self.task_ctrl)
         self.main_view.show()
 
 

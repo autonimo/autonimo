@@ -30,6 +30,8 @@ class Task(object):
         self._check_task()
         self.init_parameters()
 
+
+
     def _check_task(self):
         """
         Checks that the task class is valid.

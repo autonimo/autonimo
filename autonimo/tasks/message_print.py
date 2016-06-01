@@ -10,7 +10,7 @@ from time import sleep
 class MessagePrint(Task):
 
     NICE_NAME = 'Print a message'
-    CATEGORY = 'General'
+    CATEGORY = 'Other'
 
     # define parameter details for the parameters defined in set_parameters
     PARAMETER_TYPES_STUFF = {

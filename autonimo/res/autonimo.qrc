@@ -3,5 +3,10 @@
         <file>img/arrow-curve-000-double-red.png</file>
         <file>img/arrow-curve-000-left.png</file>
         <file>qss/autonimo.qss</file>
+        <file>img/folder-horizontal-open.png</file>
+        <file>img/disk.png</file>
+        <file>img/disk-rename.png</file>
+        <file>img/rocket-fly.png</file>
+        <file>img/balloon-smiley.png</file>
     </qresource>
 </RCC>

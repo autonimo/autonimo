@@ -4,6 +4,8 @@
 import os
 import sys
 import inspect
+from PyQt4 import QtGui
+from tasks.task import Task
 
 
 class TaskController(object):
@@ -19,12 +21,47 @@ class TaskController(object):
 
 
     def import_tasks_manually(self):
+
+
         from tasks.wait import Wait
+        from tasks.message_print import MessagePrint
 
-        self.model.imported_tasks = [Wait]
 
 
-        print 'tasks available:', ','.join([task.NICE_NAME for task in self.model.imported_tasks])
+        tasks = [Wait, MessagePrint]
+        tasks_by_category = {}
+
+
+
+
+        # get categories and tasks
+        for task in tasks:
+            if task.CATEGORY not in tasks_by_category:
+                tasks_by_category[task.CATEGORY] = []
+            tasks_by_category[task.CATEGORY].append(task)
+
+        # make category items
+        for category in tasks_by_category:
+            item_category = QtGui.QStandardItem(category)
+            for task in tasks_by_category[category]:
+                item = QtGui.QStandardItem(task.NICE_NAME)
+                # item_desc = QtGui.QStandardItem(task.DESCRIPTION)
+                # item.appendRow(item_desc)
+                item.setData(task)
+                item_category.appendRow(item)
+            self.model.tasks_available_model.appendRow(item_category)
+
+
+
+
+
+            # self.model.imported_tasks = [Wait]
+
+
+            # print 'tasks available:', ','.join([task.NICE_NAME for task in self.model.imported_tasks])
+
+
+
 
     def import_tasks(self, path):
         """
@@ -63,3 +100,10 @@ class TaskController(object):
 
 
     # def create_task(self, ):
+
+    def create_task(self, index):
+        task = self.model.tasks_available_model.itemFromIndex(index).data()
+        if task is not None and issubclass(task, Task):
+            return task(self.model)
+
+

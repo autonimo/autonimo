@@ -21,7 +21,7 @@ TODO
 -- could be on the network for instance
 
 - move ui files to res folder, or make them from code only
-
+- autovalidate when changing task params
 
 
 

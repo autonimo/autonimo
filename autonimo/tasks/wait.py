@@ -16,7 +16,8 @@ class Wait(Task):
 
 
     NICE_NAME = 'Wait'
-    CATEGORY = 'Networking'
+    CATEGORY = 'General'
+    DESCRIPTION = 'Wait for a while'
 
     # define parameter details for the parameters defined in set_parameters
     PARAMETER_UI_STUFF = {
