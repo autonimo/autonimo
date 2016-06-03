@@ -9,9 +9,11 @@ for cl in api2_classes:
 from PyQt4 import QtGui, QtCore
 import sys
 from models.model import Model
+from ctrls.component_ctrl import ComponentController
 from ctrls.task_ctrl import TaskController
-from views.autonimo_main_window import AutonimoMainWindow
+from views.main_view import MainView
 
+from components.timer import Timer
 
 
 # required for resource files
@@ -26,12 +28,13 @@ class Autonimo(QtGui.QApplication):
         self.model = Model(self)
 
         # controllers
+        self.comp_ctrl = ComponentController(self.model)
         self.task_ctrl = TaskController(self.model)
         # self.task_ctrl.import_tasks('tasks')
 
 
         # views
-        self.main_view = AutonimoMainWindow(self.model, self.task_ctrl)
+        self.main_view = MainView(self.model, self.comp_ctrl, self.task_ctrl)
         self.main_view.show()
 
 

@@ -3,44 +3,45 @@
 
 import abc
 from time import sleep
+from models.model import KEY_NAME, KEY_NONE_ALLOWED, KEY_EDITOR, KEY_EDITOR_PROPS
 
 
-class KeyNames(object):
-    """
-    Key names for a task's parameters.
-    """
-    NICE_NAME = 'nice_name'
-    NONE_ALLOWED = 'none_allowed'
-    EDITOR = 'editor'
-    EDITOR_PROPS = 'editor_props'
+# class KeyNames(object):
+#     """
+#     Key names for a task's parameters.
+#     """
+#     NICE_NAME = 'nice_name'
+#     NONE_ALLOWED = 'none_allowed'
+#     EDITOR = 'editor'
+#     EDITOR_PROPS = 'editor_props'
 
 
 
 class Task(object):
     __metaclass__ = abc.ABCMeta
 
-    NICE_NAME = None
+    NAME = None
     CATEGORY = None
     DESCRIPTION = None
-    PARAMETER_UI_STUFF = None
+    UI_PARAMETERS = None
 
     def __init__(self, model):
         self.model = model
 
         self._check_task()
-        self.init_parameters()
+        self.set_parameters()
 
 
 
     def _check_task(self):
         """
-        Checks that the task class is valid.
+        Checks that the task subclass is valid.
         :return:
         """
-        if self.NICE_NAME is None:
+        if self.NAME is None:
             raise TypeError('NICE_NAME cannot be NoneType')
 
-    def _check_parameters(self):
+    def _check_ui_parameters(self):
         """
         Checks that tasks parameters exist in the task and are of the right type. Runs before the task is run.
         :return: None
@@ -51,16 +52,16 @@ class Task(object):
                 # check parameter value can be found
                 if not hasattr(self, param) and not hasattr(Task, param):
                     raise TaskValidationError('task "{}" defines parameter "{}" but a task attribute with that name '
-                                              'could not be found'.format(self.NICE_NAME, param))
+                                              'could not be found'.format(self.NAME, param))
 
                 # parameter cannot be None if not explicitly allowed
                 if (getattr(self, param) is None
-                    and (KeyNames.NONE_ALLOWED not in self.PARAMETER_UI_STUFF[param]
-                         or not self.PARAMETER_UI_STUFF[param][KeyNames.NONE_ALLOWED])):
+                    and (KEY_NONE_ALLOWED not in self.PARAMETER_UI_STUFF[param]
+                         or not self.PARAMETER_UI_STUFF[param][KEY_NONE_ALLOWED])):
                     raise TaskValidationError('parameter "{}" is None and None is not explicitly allowed'
                                               ''.format(param))
 
-    def init_parameters(self):
+    def set_parameters(self):
         """
         Initialise (or reset) task parameter attributes to their default values.
         :return: None
@@ -69,7 +70,7 @@ class Task(object):
 
     def validate_parameters(self):
         """
-        Override to add checks for task parameters and their values. Runs before the task is run.
+        Any general check on the task parameters. Is called immediately before the task is run.
         :return:
         :raises TaskValidationError: the task parameter is invalid.
         """

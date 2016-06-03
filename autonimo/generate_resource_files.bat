@@ -1,7 +1,8 @@
 
 
-call pyuic4 res\ui\autonimo_main_window.ui -o views\gen\ui_autonimo_main_window.py
-call pyuic4 res\ui\task_widget.ui -o views\gen\ui_task_widget.py
+call pyuic4 res\ui\main_view.ui -o views\gen\ui_main_view.py
+call pyuic4 res\ui\task_view.ui -o views\gen\ui_task_view.py
+call pyuic4 res\ui\component_view.ui -o views\gen\ui_component_view.py
 
 
 

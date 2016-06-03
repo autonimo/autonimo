@@ -44,7 +44,7 @@ class TaskController(object):
         for category in tasks_by_category:
             item_category = QtGui.QStandardItem(category)
             for task in tasks_by_category[category]:
-                item = QtGui.QStandardItem(task.NICE_NAME)
+                item = QtGui.QStandardItem(task.NAME)
                 # item_desc = QtGui.QStandardItem(task.DESCRIPTION)
                 # item.appendRow(item_desc)
                 item.setData(task)

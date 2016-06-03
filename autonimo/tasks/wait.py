@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from PyQt4 import QtGui
-from task import Task, TaskValidationError, KeyNames
+from task import *
 from time import sleep
 
 
@@ -15,26 +15,25 @@ class Wait(Task):
     #     return 1/0
 
 
-    NICE_NAME = 'Wait'
+    NAME = 'Wait'
     CATEGORY = 'General'
     DESCRIPTION = 'Wait for a while'
 
-    # define parameter details for the parameters defined in set_parameters
-    PARAMETER_UI_STUFF = {
+    UI_PARAMETERS = {
         'sleep_time': {
-            KeyNames.NICE_NAME: 'Time to sleep',
-            KeyNames.NONE_ALLOWED: False,
-            KeyNames.EDITOR: QtGui.QSpinBox,
-            KeyNames.EDITOR_PROPS: {
+            KEY_NAME: 'Time to sleep',
+            KEY_NONE_ALLOWED: False,
+            KEY_EDITOR: QtGui.QSpinBox,
+            KEY_EDITOR_PROPS: {
                 'setMaximum': 10,
                 'setSuffix': ' sec',
             },
         },
         'other_param': {
-            KeyNames.NICE_NAME: 'Another parameter',
-            KeyNames.NONE_ALLOWED: False,
-            KeyNames.EDITOR: QtGui.QSpinBox,
-            KeyNames.EDITOR_PROPS: {
+            KEY_NAME: 'Another parameter',
+            KEY_NONE_ALLOWED: False,
+            KEY_EDITOR: QtGui.QSpinBox,
+            KEY_EDITOR_PROPS: {
                 'setMaximum': 5,
                 'setSuffix': ' sec',
             },

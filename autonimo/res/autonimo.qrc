@@ -8,5 +8,7 @@
         <file>img/disk-rename.png</file>
         <file>img/rocket-fly.png</file>
         <file>img/balloon-smiley.png</file>
+        <file>img/table.png</file>
+        <file>img/control.png</file>
     </qresource>
 </RCC>
